@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:5500/ -->
+<html lang="en" style="--app-font-size: 16px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Multi-Converter</title>
+  <link rel="stylesheet" href="./Multi-Converter_files/styles.css">
+<!-- Code injected by Five-server -->
+  <script async="" data-id="five-server" data-file="/Users/metamike/Converter App/index.html" type="application/javascript" src="./Multi-Converter_files/fiveserver.js"></script>
+  <style>      
+      /* Injected by five-server */
+      /*[data-highlight="true"] {
+        border: 1px rgb(90,170,255) solid !important;
+        background-color: rgba(155,215,255,0.5);
+        animation: fadeOutHighlight 1s forwards 0.5s;
+      }
+      img[data-highlight="true"] {
+        filter: sepia(100%) hue-rotate(180deg) saturate(200%);
+        animation: fadeOutHighlightIMG 0.5s forwards 0.5s;
+      }*/
+      @keyframes fadeOutHighlight {
+        from {background-color: rgba(155,215,255,0.5);}
+        to {background-color: rgba(155,215,255,0);}
+      }      
+      @keyframes fadeOutHighlightIMG {
+        0% {filter: sepia(100%) hue-rotate(180deg) saturate(200%);}
+        33% {filter: sepia(66%) hue-rotate(180deg) saturate(100%);}
+        50% {filter: sepia(50%) hue-rotate(90deg) saturate(50%);}
+        66% {filter: sepia(33%) hue-rotate(0deg) saturate(100%);}
+        100% {filter: sepia(0%) hue-rotate(0deg) saturate(100%);}
+      }
+      @keyframes fiveserverInfoPopup {
+        0%   {top:-40px;}
+        15%  {top:4px;}
+        85%  {top:4px;}
+        100% {top:-40px;}
+      }
+      /*smaller*/
+      @media (max-width: 640px) {
+        #fiveserver-info-wrapper {
+          max-width: 98%;
+        }
+        #fiveserver-info {
+          border-radius: 0px;
+        }      
+      }
+
+      </style></head>
+<body data-theme="light">
+  <div class="app" id="app">
+    <header class="site-header">
+      <div class="header-left">
+        <button id="homeBtn" class="btn ghost small">← Home</button>
+        <div class="logo">Multi-Converter</div>
+      </div>
+      <div class="header-right">
+        <span class="header-tagline">Your conversion workspace</span>
+        <div class="settings-menu">
+          <button id="settingsBtn" class="btn ghost small settings-button" type="button" aria-expanded="false" aria-controls="settingsPanel">
+            <span aria-hidden="true">⚙</span> Settings
+          </button>
+          <div id="settingsPanel" class="settings-panel" role="group" aria-label="Settings" hidden="">
+            <label class="settings-toggle" for="darkModeToggle">
+              <span>Dark mode</span>
+              <input id="darkModeToggle" type="checkbox">
+            </label>
+            <label class="font-size-setting" for="fontSizeRange">
+              <span>Font size <output id="fontSizeValue" for="fontSizeRange">16 px</output></span>
+              <input id="fontSizeRange" type="range" min="14" max="20" step="1" value="16">
+            </label>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="sidebar" aria-label="Tools sidebar">
+      <div class="sidebar-heading">
+        <h4>Workspace</h4>
+        <span class="sidebar-kicker">CONVERTERS</span>
+      </div>
+      <nav class="nav-groups" aria-label="Converter categories">
+        <section class="nav-group">
+          <h5>Measurement</h5>
+          <ul class="nav-list" role="list">
+            <li><button data-tool="unit" data-category="length" class="nav-btn active"><span class="nav-icon">↔</span>Length &amp; Distance</button></li>
+            <li><button data-tool="unit" data-category="temperature" class="nav-btn"><span class="nav-icon">°</span>Temperature</button></li>
+            <li><button data-tool="unit" data-category="weight" class="nav-btn"><span class="nav-icon">kg</span>Mass &amp; Weight</button></li>
+            <li><button data-tool="unit" data-category="area" class="nav-btn"><span class="nav-icon">m²</span>Area</button></li>
+          </ul>
+        </section>
+        <section class="nav-group">
+          <h5>Physics &amp; Engineering</h5>
+          <ul class="nav-list" role="list">
+            <li><button data-tool="unit" data-category="speed" class="nav-btn"><span class="nav-icon">↗</span>Speed</button></li>
+            <li><button data-tool="unit" data-category="pressure" class="nav-btn"><span class="nav-icon">Pa</span>Pressure</button></li>
+            <li><button data-tool="unit" data-category="energy" class="nav-btn"><span class="nav-icon">J</span>Energy</button></li>
+          </ul>
+        </section>
+        <section class="nav-group">
+          <h5>Cooking &amp; Kitchen</h5>
+          <ul class="nav-list" role="list">
+            <li><button data-tool="unit" data-category="volume" class="nav-btn"><span class="nav-icon">m³</span>Volume</button></li>
+          </ul>
+        </section>
+        <section class="nav-group">
+          <h5>Finance &amp; Business</h5>
+          <ul class="nav-list" role="list">
+            <li><button data-tool="currency" class="nav-btn"><span class="nav-icon">¤</span>Currency</button></li>
+          </ul>
+        </section>
+        <section class="nav-group">
+          <h5>Travel</h5>
+          <ul class="nav-list" role="list">
+            <li><button data-tool="timezone" class="nav-btn"><span class="nav-icon">◷</span>Time Zones</button></li>
+          </ul>
+        </section>
+        <section class="nav-group">
+          <h5>Files</h5>
+          <ul class="nav-list" role="list">
+            <li><button data-tool="file" class="nav-btn"><span class="nav-icon">▧</span>File Converter</button></li>
+          </ul>
+        </section>
+        <section class="nav-group">
+          <h5>Custom Formulas</h5>
+          <ul class="nav-list" role="list">
+            <li><button data-tool="formula" class="nav-btn"><span class="nav-icon">ƒx</span>Formula Builder</button></li>
+          </ul>
+        </section>
+      </nav>
+    </aside>
+
+    <main class="main" id="main">
+      <!-- Landing -->
+      <section id="landing" style="display: block;">
+        <div class="catalog-heading">
+          <div>
+            <span class="eyebrow">YOUR CONVERSION WORKSPACE</span>
+            <h1>What are we converting?</h1>
+            <p class="muted">Pick a tool to start. Your work stays organized as you move between converters.</p>
+          </div>
+          <div class="catalog-count"><strong id="toolCount">12</strong><span>TOOLS</span></div>
+        </div>
+        <div class="pack-toolbar" role="toolbar" aria-label="Converter packs">
+          <span class="pack-label">PACKS</span>
+          <button class="pack-btn active" type="button" data-pack="all" aria-pressed="true">All tools</button>
+          <button class="pack-btn" type="button" data-pack="kitchen" aria-pressed="false">Kitchen</button>
+          <button class="pack-btn" type="button" data-pack="builder" aria-pressed="false">Builder</button>
+          <button class="pack-btn" type="button" data-pack="physics" aria-pressed="false">Physics</button>
+          <button class="pack-btn" type="button" data-pack="travel" aria-pressed="false">Travel</button>
+          <button class="pack-btn" type="button" data-pack="finance" aria-pressed="false">Finance</button>
+        </div>
+        <div class="landing-grid" id="landingGrid">
+          <button class="tool-card open-tool" data-tool="unit" data-category="length" data-packs="builder physics travel">
+            <span class="tool-card-top"><span class="tool-icon">↔</span><span class="tool-category">MEASUREMENT</span></span>
+            <span class="tool-name">Length &amp; Distance</span><span class="tool-description">Move between metric and imperial distances.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="unit" data-category="temperature" data-packs="travel kitchen">
+            <span class="tool-card-top"><span class="tool-icon">°</span><span class="tool-category">MEASUREMENT</span></span>
+            <span class="tool-name">Temperature</span><span class="tool-description">Convert Celsius, Fahrenheit, and Kelvin.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="unit" data-category="weight" data-packs="kitchen builder physics">
+            <span class="tool-card-top"><span class="tool-icon">kg</span><span class="tool-category">MEASUREMENT</span></span>
+            <span class="tool-name">Mass &amp; Weight</span><span class="tool-description">Compare grams, kilograms, pounds, and ounces.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="unit" data-category="volume" data-packs="kitchen builder">
+            <span class="tool-card-top"><span class="tool-icon">m³</span><span class="tool-category">COOKING &amp; KITCHEN</span></span>
+            <span class="tool-name">Volume</span><span class="tool-description">Measure liters, cups, milliliters, and gallons.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="unit" data-category="area" data-packs="builder physics">
+            <span class="tool-card-top"><span class="tool-icon">m²</span><span class="tool-category">ENGINEERING</span></span>
+            <span class="tool-name">Area</span><span class="tool-description">Convert surface area for plans and projects.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="unit" data-category="speed" data-packs="physics travel">
+            <span class="tool-card-top"><span class="tool-icon">↗</span><span class="tool-category">ENGINEERING</span></span>
+            <span class="tool-name">Speed</span><span class="tool-description">Compare meters per second, km/h, and mph.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="unit" data-category="pressure" data-packs="physics">
+            <span class="tool-card-top"><span class="tool-icon">Pa</span><span class="tool-category">ENGINEERING</span></span>
+            <span class="tool-name">Pressure</span><span class="tool-description">Convert pascals, bar, atmospheres, and psi.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="unit" data-category="energy" data-packs="physics">
+            <span class="tool-card-top"><span class="tool-icon">J</span><span class="tool-category">ENGINEERING</span></span>
+            <span class="tool-name">Energy</span><span class="tool-description">Convert joules, calories, and kilowatt-hours.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="currency" data-packs="finance travel">
+            <span class="tool-card-top"><span class="tool-icon">¤</span><span class="tool-category">FINANCE &amp; BUSINESS</span></span>
+            <span class="tool-name">Currency</span><span class="tool-description">Compare currencies with current exchange rates.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="timezone" data-packs="travel">
+            <span class="tool-card-top"><span class="tool-icon">◷</span><span class="tool-category">TRAVEL</span></span>
+            <span class="tool-name">Time Zones</span><span class="tool-description">Find the local time across cities and regions.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="file" data-packs="all">
+            <span class="tool-card-top"><span class="tool-icon">▧</span><span class="tool-category">FILES</span></span>
+            <span class="tool-name">File Converter</span><span class="tool-description">Work with supported image, text, and media formats.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button class="tool-card open-tool" data-tool="formula" data-packs="all">
+            <span class="tool-card-top"><span class="tool-icon">ƒx</span><span class="tool-category">CUSTOM FORMULAS</span></span>
+            <span class="tool-name">Formula Builder</span><span class="tool-description">Calculate with your own named variables and expression.</span><span class="tool-arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Converter view -->
+      <section id="converterView" class="hidden" style="display: none;">
+        <div class="converter-layout">
+          <!-- Left column: converter blocks (stackable) -->
+          <div class="converter-left-column" id="converterColumn" aria-live="polite">
+            <div class="converter-block header-block">
+              <div class="converter-top">
+                <h2 id="converterTitle">Unit Converter</h2>
+                <div class="converter-sub muted">Create one or more conversion blocks. Each result appears in the summary.</div>
+              </div>
+            </div>
+
+            <!-- container where converter blocks are appended -->
+            <div id="blocksContainer"></div>
+
+            <!-- Add another converter block -->
+            <div class="add-block-row">
+              <button id="addBlockBtn" class="btn">＋ Add converter</button>
+            </div>
+          </div>
+
+          <!-- Right column: summary bar -->
+          <aside class="summary-bar" id="summaryBar" aria-label="Conversion summary">
+            <div class="summary-header">
+              <h4>Summary</h4>
+              <div class="summary-sub muted">Recent conversions</div>
+            </div>
+            <div id="summaryList" class="summary-list" role="list"></div>
+            <div class="summary-footer">
+              <button id="exportSummaryBtn" class="btn ghost small">Export CSV</button>
+              <button id="exportAllSummaryBtn" class="btn ghost small">Export All CSV</button>
+              <div class="muted" style="margin-top:8px;">Results update as you convert. Click an item to copy.</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Placeholder for other tools -->
+      <section id="otherView" class="hidden" style="display: none;">
+        <div class="card">
+          <h3 id="otherTitle">Tool</h3>
+          <p id="otherDesc" class="muted">Placeholder for the selected tool. Implement the tool UI here.</p>
+          <div style="margin-top:12px">
+            <button class="btn" id="backToLanding">Back</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ad area reserved above footer -->
+      <div class="ad-slot" id="adSlot" aria-hidden="true">
+        <div class="ad-placeholder">Ad space (placeholder)</div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-text">© 2026 Multi-Converter</p>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="http://127.0.0.1:5500/#" class="nav-link">Privacy</a>
+          <a href="http://127.0.0.1:5500/#" class="nav-link">Terms</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./Multi-Converter_files/units.js"></script>
+  <script src="./Multi-Converter_files/currency.js"></script>
+  <script src="./Multi-Converter_files/timezone.js"></script>
+  <script src="./Multi-Converter_files/app.js"></script>
+
+
+</body></html>
